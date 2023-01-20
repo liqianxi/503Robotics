@@ -1,6 +1,6 @@
 # parameters
 ARG REPO_NAME="503Robotics"
-ARG DESCRIPTION="<DESCRIPTION_HERE>"
+ARG DESCRIPTION="503 stuff"
 ARG MAINTAINER="liqianxi (qianxi@ualberta.ca)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
