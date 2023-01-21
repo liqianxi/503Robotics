@@ -1,6 +1,6 @@
 # parameters
 ARG REPO_NAME="503Robotics"
-ARG DESCRIPTION="<DESCRIPTION_HERE>"
+ARG DESCRIPTION="503 stuff"
 ARG MAINTAINER="liqianxi (qianxi@ualberta.ca)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
@@ -49,6 +49,7 @@ ENV DT_LAUNCHER "${LAUNCHER}"
 
 # install apt dependencies
 COPY ./dependencies-apt.txt "${REPO_PATH}/"
+
 RUN dt-apt-install ${REPO_PATH}/dependencies-apt.txt
 
 # install python3 dependencies
@@ -82,3 +83,19 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
     org.duckietown.label.maintainer="${MAINTAINER}"
 # <== Do not change the code above this line
 # <==================================================
+
+
+FROM duckietown/dt-duckiebot-interface:daffy-arm64v8
+
+WORKDIR /color_detector_dir
+
+COPY requirements.txt ./
+
+RUN pip install -r requirements.txt
+ENV "N_SPLITS" 1
+ENV "BINS" 10
+ENV "MAX" 5
+
+COPY color_detector.py .
+
+CMD python3 ./color_detector.py
