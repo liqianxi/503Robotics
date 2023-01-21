@@ -89,7 +89,7 @@ FROM duckietown/dt-duckiebot-interface:daffy-arm64v8
 
 WORKDIR /color_detector_dir
 
-COPY ./requirements.txt ./
+COPY requirements.txt ./
 
 RUN pip install -r requirements.txt
 ENV "N_SPLITS" 1
